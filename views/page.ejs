@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>View and Edit Page</title>
+</head>
+
+<body>
+    <h1>Page Title</h1>
+    <a href="/">Go Home</a>
+    <br />
+    <!-- <pre><%= JSON.stringify(page, null, '\t') %></pre> -->
+    <br />
+    <h2>
+        <%= page.pagename %>
+    </h2>
+    <p>
+        URL:
+        <% var url = page.pageurl[0] === '/' ? page.pageurl : "/"+page.pageurl %>
+            <a target="_blank" href="https://rad.link<%= url %>">
+                <%= page.pageurl %>
+            </a>
+    </p>
+    <% if(page.links){ for(var i=0; i<page.links.length; i++){ %>
+        <p>
+            <%= page.links[i].linkname %> |
+                <a target="_blank" href="<%=page.links[i].linkurl %>">
+                    <%= page.links[i].linkurl %>
+                </a> |
+                <%= page.links[i].linkicon %> |
+                    <%= page.links[i].linkpos %> | <a href="<%=page._id %>/link/<%=page.links[i].linkname %>">Edit</a> | <a class="delete-link" data-pageid="<%=page._id %>" id="<%=page.links[i].linkname%>" href="#">X</a>
+        </p>
+        <% } } %>
+            <form id="add-link">
+                <h3>Add a link:</h3>
+                <p>Name of link: <input type="text" name="linkname" placeholder="Enter link name" /></p>
+                <p>Link URL: <input type="text" name="linkurl" placeholder="Enter link url" /></p>
+                <p>Font Awesome Icon: <select name="linkicon">
+                <option value="fab fa-instagram">Instagram</option>
+                <option value="fab fa-facebook">Facebook</option>
+                <option value="fab fa-twitter">Twitter</option>
+                <option value="fab fa-pinterest">Pinterest</option>
+                <option value="fab fa-youtube">YouTube</option>
+                <option value="fab fa-linkedin">Linkedin</option>
+                <option selected value="fas fa-pencil-alt">Pencil</option>
+                <option selected value="fas fa-comments">Comments</option>
+                <option selected value="fab fa-globe">Globe</option>
+            </select></p>
+                <p>Position on page: <input type="number" name="linkpos" value="1" /></p>
+                <input type="hidden" name="id" value="<%=page._id %>" />
+                <button type="submit">Save</button>
+            </form>
+            <script src="../script.js"></script>
+</body>
+
+</html>

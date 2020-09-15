@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Create RadLinks</title>
+</head>
+
+<body>
+    <h1>RadLink Admin Panel</h1>
+    <h2>View and Manage RadLink Pages</h2>
+    <!-- <pre><%= JSON.stringify(pages, null, '\t') %></pre> -->
+    <ul>
+        <% for(var i=0; i<pages.length; i++) { %>
+            <li>
+                <a href="page/<%= pages[i]._id %>">
+                    <%= pages[i].pagename %>
+                </a> | <a href="#" id="<%= pages[i]._id %>" class="delete">X</a>
+            </li>
+            <% } %>
+    </ul>
+    <hr />
+    <form id="add-page">
+        <h3>Add A Page</h3>
+        <p>Page Name: <input type="text" name="pagename" placeholder="Enter name of page" required /></p>
+        <p>Page URL: <input type="text" name="pageurl" placeholder="Enter desired url" required /></p>
+        <p>Page Handle: <input type="text" name="pagehandle" placeholder="Enter @socialmedia handle" /></p>
+        <p>Page SEO Description: <textarea name="pagedesc" placeholder="Enter Meta Desc for Page"></textarea></p>
+
+
+
+        <button type="submit">Save</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
